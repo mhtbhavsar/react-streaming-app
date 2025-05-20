@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
 
+import { useState } from 'react';
+import VideoPlayer from './components/VideoPlayer';
+
 function App() {
+
+  const [videoId, setVideoId] = useState(null)
+
+  function playVideo(e, videoId){
+    e.preventDefault()
+    setVideoId(videoId)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {videoId && <VideoPlayer videoId={videoId}></VideoPlayer>} <br />
+      <button onClick={(e)=>{playVideo(e, 'f1')}}>Play Video 1</button>
+      <button onClick={(e)=>{playVideo(e, 'f2')}}>Play Video 2</button>
+      <button onClick={(e)=>{playVideo(e, 'f3')}}>Play Video 3</button>
     </div>
   );
 }
